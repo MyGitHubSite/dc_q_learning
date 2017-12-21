@@ -1,5 +1,5 @@
 # import the necessary packages
-from d2.donkeycar.parts.actuator import PCA9685,PWMSteering, PWMThrottle
+from donkeycar.parts.actuator import PCA9685,PWMSteering, PWMThrottle
 import numpy as np
 # import numpy.polynomial.polynomial as poly
 import matplotlib.pyplot as plt
@@ -15,20 +15,21 @@ from random import randint
 
 if __name__ == "__main__":
     a = float(input("enter throttle value"))
+    s_controller = PCA9685(channel=0)
     throt = PWMThrottle(controller=s_controller)
     throt.run(0)
-    s_controller = PCA9685(channel = 0)
-
-
-
 
     def write_q_mat(q_matrix):
         with open("/home/pi/dc_q_learning/q_matrix.json","w") as json_write:
             json.dump(q_matrix.tolist(), json_write, indent=4)
 
     def take_action(kl):
-        np.argmax(r_matrix[kl,:])
-        return ac
+        k1 = (k1-10)*0.1
+        s_controller = PCA9685(channel=1)
+        steer = PWMSteering(controller = s_controller)
+        steer.run(0)
+        steer.run(k1)
+
     global rnn
     rnn=0.4
     # Create a memory stream so photos doesn't need to be saved in a file
@@ -247,9 +248,12 @@ if __name__ == "__main__":
                                 if rnn > np.random.random():
                                     rnno = randint(0,20)
                                     rnn = rnn - 0.001
-                                    act1 = np.argmax(r_matrix[kl, :])
+                                    take_action(rnno)
+
                                 else:
                                     act1 = np.argmax(r_matrix[kl,:])
+                                    take_action(act1)
+
                             elif frcnt == 1:
                                 st2 = int(kl+1)
                                 act2 = np.argmax(r_matrix[kl,:])
