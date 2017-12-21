@@ -104,15 +104,15 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     for i in range(height - 1, int(height / 2), -1):
 
         for j in range(int(width / 2), 0, -1):
-            ####if edgesthresh[i, j] == 255:
+            if edgesthresh[i, j] == 255:
                 ####if i in lft_y:
                     ####break
                 ####else:
-            lft_y.append(i)
-            lft_x.append(j)
+                lft_y.append(i)
+                lft_x.append(j)
                     # np.concatenate(lft_y, i)
                     # np.concatenate((lft_x, np.array([j])))
-            aj = j
+                aj = j
         '''
                     j = j - 4
                     Night
@@ -127,15 +127,15 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         '''
         for k in range(int(width / 2), 80):
             j = aj
-            ####if edgesthresh[i, k] == 255:
+            if edgesthresh[i, k] == 255:
                 ####if i in rit_y:
                     ####break
                 ####else:
-            rit_y.append(i)
-            rit_x.append(k)
+                rit_y.append(i)
+                rit_x.append(k)
                     # rit_y.np.append([i])
                     # rit_x.np.append([k])
-            ak = k
+                ak = k
             '''
                     k = k + 4
                 
@@ -239,15 +239,12 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
                         elif frcnt == 3:
                             st4 = int(kl + 1)
                             act4 = np.argmax(r_matrix[kl, :])
-                        elif frcnt == 4:
+                        else:
                             st5 = int(kl + 1)
                             act5 = np.argmax(r_matrix[kl, :])
-                        else:
-                            st6 = int (kl+1)
-                            act6 = np.argmax(r_matrix[kl, :])
 
                         frcnt = frcnt + 1
-                        if frcnt == 6:
+                        if frcnt == 5:
                             frcnt = 0
                             
                             q_matrix[st1-1,act1] = ((1 - alpha)*q_matrix[(st1-1),act1]) + alpha*(r_matrix[(st1 - 1),act1] + (0.333 * q_matrix[st2 - 1, act2]) + (0.333 * q_matrix[st3 - 1, act3]) +(0.333 * q_matrix[st4 - 1, act4]))
