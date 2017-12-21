@@ -104,7 +104,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     for i in range(height - 1, int(height / 2), -1):
 
         for j in range(int(width / 2), 0, -1):
-            if edgesthresh[i, j] == 255:
+            ####if edgesthresh[i, j] == 255:
                 ####if i in lft_y:
                     ####break
                 ####else:
@@ -113,13 +113,13 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
                     # np.concatenate(lft_y, i)
                     # np.concatenate((lft_x, np.array([j])))
             aj = j
-                    '''
+        '''
                     j = j - 4
                     Night
                 for n in range(j, 0, -1):
                     if edgesthresh[i, n] == 255:
                         edgesthresh[i, n] = 0
-                '''
+        '''
         '''
         if camvar == 1:
              edgesthresh[i, int(((aj + ak) + 80 - aj) / 2)] = 200
@@ -127,7 +127,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         '''
         for k in range(int(width / 2), 80):
             j = aj
-            if edgesthresh[i, k] == 255:
+            ####if edgesthresh[i, k] == 255:
                 ####if i in rit_y:
                     ####break
                 ####else:
