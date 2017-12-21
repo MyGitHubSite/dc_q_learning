@@ -219,7 +219,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     #plt.gca().invert_xaxis()
     global frcnt
     if frcnt == 0:
-        for i in range (60,30,-5):
+        for i in range (60,35,-5):
             re = (rp(i) - lp(i))/11
             for kl in range (0,11):
                 if 40 > (lp(i) + (kl*re)):
@@ -250,7 +250,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
                             q_matrix[st1-1,act1] = ((1 - alpha)*q_matrix[(st1-1),act1]) + alpha*(r_matrix[(st1 - 1),act1] + (0.333 * q_matrix[st2 - 1, act2]) + (0.333 * q_matrix[st3 - 1, act3]) +(0.333 * q_matrix[st4 - 1, act4]))
 
                             with open("/home/pi/dc_q_learning/q_matrix.json","w") as json_write:
-                            json.dump(q_matrix.tolist(), json_write, indent=4)
+                                json.dump(q_matrix.tolist(), json_write, indent=4)
                             
                             ####write_q_mat(q_matrix)
     else:
