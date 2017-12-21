@@ -12,7 +12,7 @@ import json
 
 
 def write_q_mat(q_matrix):
-    with open("/home/pi/Desktop/q_matrix.json","w") as json_write:
+    with open("/home/pi/dc_q_learning/q_matrix.json","w") as json_write:
         json.dump(q_matrix.tolist(), json_write, indent=4)
 
 def take_action(kl):
@@ -35,7 +35,7 @@ r_matrix = np.matrix([[0,0,0,0,0,0,0,0,0,0,0,10,20,30,40,50,60,70,80,90,100],
                       [80,90,100,90,80,70,60,50,40,30,20,10,0,0,0,0,0,0,0,0,0],
                       [100,90,80,70,60,50,40,30,20,10,0,0,0,0,0,0,0,0,0,0,0]])
 global q_matrix
-with open("/home/pi/Desktop/q_matrix.json") as json_read:
+with open("/home/pi/dc_q_learning/q_matrix.json") as json_read:
     q_matrix = np.array(json.load(json_read))
 
 global frcnt
@@ -136,18 +136,18 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
                     # rit_y.np.append([i])
                     # rit_x.np.append([k])
             ak = k
-                    '''
+            '''
                     k = k + 4
                 
                 camvar = 0
                 for m in range(k, 160):
                     if edgesthresh[i, m] == 255:
                         edgesthresh[i, m] = 0
-                '''       
+            '''
             if j < 0:
                 j = 0
             width = (aj + ak)
-                '''
+            '''
                 print('i=', i)
                 print(int(width / 2))
                 divi = ((ak - aj) / 7)
@@ -157,7 +157,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
                     if (int(width / 2) > (int(aj + ((g - 1) * divi)))):
                         if (int(width / 2) < (int(aj + (g * divi)))):
                             print(' in stage ', g)
-                '''
+            '''
     #cv2.waitKey(0)
 
     # cv2.line(edgesthresh, (0,65),(160,65),(255),1)
@@ -210,8 +210,8 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     else:
         rxmax = np.amax(rx, axis=0)
     '''
-    datal = np.linspace(np.amin(ly, axis=0),60, 30)
-    datar = np.linspace(np.amin(ry, axis=0),60, 30)
+    datal = np.linspace(np.amin(ly, axis=0),30, 60)
+    datar = np.linspace(np.amin(ry, axis=0),30, 60)
     #plt.plot(lx, ly, 'r-', rx, ry, 'b-')
     #plt.plot(np.polyval(l, datal),datal, 'b--')
     #plt.plot(np.polyval(r,datar),datar,'r--')
@@ -252,7 +252,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
                             
                             q_matrix[st1-1,act1] = ((1 - alpha)*q_matrix[(st1-1),act1]) + alpha*(r_matrix[(st1 - 1),act1] + (0.333 * q_matrix[st2 - 1, act2]) + (0.333 * q_matrix[st3 - 1, act3]) +(0.333 * q_matrix[st4 - 1, act4]))
 
-                            with open("/home/pi/Desktop/q_matrix.json","w") as json_write:
+                            with open("/home/pi/dc_q_learning/q_matrix.json","w") as json_write:
                                 json.dump(q_matrix.tolist(), json_write, indent=4)
                             
                             ####write_q_mat(q_matrix)
