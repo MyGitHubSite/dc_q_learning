@@ -226,7 +226,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
                     
                     if 40<= (lp(i) + ((kl+1)*re)):
                         print('I am in stage ',(kl+1))
-                        global st1,st2,st3,st4, act1,act2,act3,act4
+                        global st1,st2,st3,st4,st5,act1,act2,act3,act4,act5
                         if frcnt == 0:
                             st1 = int(kl+1)
                             act1  = np.argmax(r_matrix[kl,:])
@@ -250,7 +250,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
                             q_matrix[st1-1,act1] = ((1 - alpha)*q_matrix[(st1-1),act1]) + alpha*(r_matrix[(st1 - 1),act1] + (0.333 * q_matrix[st2 - 1, act2]) + (0.333 * q_matrix[st3 - 1, act3]) +(0.333 * q_matrix[st4 - 1, act4]))
 
                             with open("/home/pi/dc_q_learning/q_matrix.json","w") as json_write:
-                                json.dump(q_matrix.tolist(), json_write, indent=4)
+                            json.dump(q_matrix.tolist(), json_write, indent=4)
                             
                             ####write_q_mat(q_matrix)
     else:
