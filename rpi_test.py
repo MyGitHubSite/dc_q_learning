@@ -15,6 +15,7 @@ from random import randint
 
 if __name__ == "__main__":
     a = float(input("enter throttle value"))
+    a = (a*(-1))
     s_controller = PCA9685(channel=0)
     throt = PWMThrottle(controller=s_controller)
     throt.run(0)
@@ -23,12 +24,11 @@ if __name__ == "__main__":
         with open("/home/pi/dc_q_learning/q_matrix.json","w") as json_write:
             json.dump(q_matrix.tolist(), json_write, indent=4)
 
-    def take_action(kl):
-        k1 = (k1-10)*0.1
+    def take_action(sv):
+        sv = (sv-10)*(-0.1)
         s_controller = PCA9685(channel=1)
         steer = PWMSteering(controller = s_controller)
-        steer.run(0)
-        steer.run(k1)
+        steer.run(sv)
 
     global rnn
     rnn=0.4
